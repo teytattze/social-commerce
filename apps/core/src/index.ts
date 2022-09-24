@@ -1,9 +1,7 @@
-export type { CoreAssert, Entity, HttpStatus, Nullable, Optional } from './common';
+export type { Entity, Exception, HttpStatus, Nullable, Optional } from './common';
+export type { CreateExceptionPayload } from './common';
 
-export { Exception } from './exception';
-export type { CreateExceptionPayload } from './exception';
-
-export { Account, AccountDITokens, AccountUseCaseDto } from './domain/account';
+export { Account, AccountDITokens, AccountRole, AccountUseCaseDto } from './domain/account';
 export type {
   AccountRepositoryPort,
   CreateAccountEntityPayload,

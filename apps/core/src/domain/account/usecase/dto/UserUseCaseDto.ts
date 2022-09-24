@@ -1,5 +1,6 @@
 import { Exclude, Expose, plainToClass } from 'class-transformer';
 import { Account } from '../../entity/Account';
+import { AccountRole } from '../../entity/enum/AccountRole';
 
 @Exclude()
 export class AccountUseCaseDto {
@@ -7,10 +8,13 @@ export class AccountUseCaseDto {
   id: string;
 
   @Expose()
-  username: string;
+  email: string;
+
+  @Exclude()
+  password: string;
 
   @Expose()
-  email: string;
+  role: AccountRole;
 
   @Expose()
   createdAt: Date;

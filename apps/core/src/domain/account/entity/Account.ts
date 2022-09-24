@@ -1,14 +1,14 @@
 import { compare, genSalt, hash } from 'bcryptjs';
 import { Entity } from 'src/common';
 import { v4 } from 'uuid';
+import { AccountRole } from './enum/AccountRole';
 import { CreateAccountEntityPayload } from './type/CreateAccountEntityPayload';
 import { UpdateAccountEntityPayload } from './type/UpdateAccountEntityPayload';
 
 export class Account extends Entity<string> {
   private email: string;
   private password: string;
-  private createdAt: Date;
-  private updatedAt: Date;
+  private role: AccountRole;
 
   constructor(payload: CreateAccountEntityPayload) {
     super();
@@ -16,6 +16,7 @@ export class Account extends Entity<string> {
     this.id = payload.id || v4();
     this.email = payload.email;
     this.password = payload.password;
+    this.role = payload.role || AccountRole.CUSTOMER;
     this.createdAt = new Date();
     this.updatedAt = new Date();
   }
@@ -28,12 +29,8 @@ export class Account extends Entity<string> {
     return this.password;
   }
 
-  public getCreatedAt(): Date {
-    return this.createdAt;
-  }
-
-  public getUpdatedAt(): Date {
-    return this.updatedAt;
+  public getRole(): AccountRole {
+    return this.role;
   }
 
   public async hashPassword(): Promise<void> {
@@ -48,7 +45,8 @@ export class Account extends Entity<string> {
 
   public async update(payload: UpdateAccountEntityPayload): Promise<void> {
     this.email = payload.email || this.email;
-    this.updatedAt = new Date();
+    this.role = payload.role || this.role;
+    this.updateTimestamp();
     await this.validate();
   }
 

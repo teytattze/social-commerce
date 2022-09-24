@@ -8,6 +8,7 @@ export class TypeOrmAccountMapper {
     ormAccount.id = domainAccount.getId();
     ormAccount.email = domainAccount.getEmail();
     ormAccount.password = domainAccount.getPassword();
+    ormAccount.role = domainAccount.getRole();
     ormAccount.createdAt = domainAccount.getCreatedAt();
     ormAccount.updatedAt = domainAccount.getUpdatedAt();
 
@@ -23,6 +24,7 @@ export class TypeOrmAccountMapper {
       id: ormAccount.id,
       email: ormAccount.email,
       password: ormAccount.password,
+      role: ormAccount.role,
       createdAt: ormAccount.createdAt,
       updatedAt: ormAccount.updatedAt,
     });

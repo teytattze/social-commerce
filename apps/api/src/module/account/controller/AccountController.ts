@@ -45,6 +45,7 @@ export class AccountController {
     const adapter = CreateAccountAdapter.new({
       email: body.email,
       password: body.password,
+      role: body.role,
     });
     const account = await this.createAccountUseCase.execute(adapter);
     return account;
@@ -66,6 +67,7 @@ export class AccountController {
       id,
       email: body.email,
       password: body.password,
+      role: body.role,
     });
     const account = await this.updateAccountByIdUseCase.execute(adapter);
     return account;

@@ -1,24 +1,24 @@
-import { HttpStatus, Nullable } from 'src/common';
+import { Nullable } from 'src/common';
 import {
   Account,
+  AccountEmailExistedException,
   AccountRepositoryPort,
   AccountUseCaseDto,
   CreateAccountPort,
   CreateAccountUseCase,
 } from 'src/domain/account';
-import { Exception } from 'src/exception';
 
 export class CreateAccountService implements CreateAccountUseCase {
   constructor(private readonly accountRepository: AccountRepositoryPort) {}
 
   public async execute(payload: CreateAccountPort): Promise<AccountUseCaseDto> {
     const account: Nullable<Account> = await this.accountRepository.findByEmail(payload.email);
-    if (account)
-      throw Exception.new({ statusCode: HttpStatus.CONFLICT, message: 'Email already exists' });
+    if (account) throw new AccountEmailExistedException();
 
     const newAccount: Account = await Account.new({
       email: payload.email,
       password: payload.password,
+      role: payload.role,
     });
 
     await this.accountRepository.create(newAccount);

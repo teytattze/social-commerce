@@ -1,6 +1,7 @@
+import { AccountRole } from '@sc/core';
 import { Column, Entity, PrimaryColumn } from 'typeorm';
 
-@Entity({ name: 'Accounts' })
+@Entity({ name: 'accounts' })
 export class TypeOrmAccount {
   @PrimaryColumn()
   id: string;
@@ -10,6 +11,9 @@ export class TypeOrmAccount {
 
   @Column()
   password: string;
+
+  @Column('enum', { enum: AccountRole, default: AccountRole.CUSTOMER })
+  role: AccountRole;
 
   @Column()
   createdAt: Date;

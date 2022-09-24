@@ -3,8 +3,13 @@ export { AccountDITokens } from './di/AccountDITokens';
 
 // Entity
 export { Account } from './entity/Account';
+export { AccountRole } from './entity/enum/AccountRole';
 export type { UpdateAccountEntityPayload } from './entity/type/UpdateAccountEntityPayload';
 export type { CreateAccountEntityPayload } from './entity/type/CreateAccountEntityPayload';
+
+// Exception
+export { AccountEmailExistedException } from './exception/AccountEmailExistedException';
+export { AccountNotFoundException } from './exception/AccountNotFoundException';
 
 // Port
 export type { AccountRepositoryPort } from './port/persistence/AccountRepositoryPort';
