@@ -1,5 +1,5 @@
 {
-  "name": "social-commerce",
+  "name": "@sc/social-commerce",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
@@ -8,12 +8,14 @@
   ],
   "scripts": {
     "build": "turbo run build",
+    "build:core": "turbo run build --filter=@sc/core",
     "dev": "turbo run dev --parallel",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "start": "turbo run start"
   },
   "devDependencies": {
-    "eslint-config-custom": "workspace:*",
+    "@sc/eslint-config-custom": "workspace:*",
     "prettier": "latest",
     "turbo": "latest"
   },
